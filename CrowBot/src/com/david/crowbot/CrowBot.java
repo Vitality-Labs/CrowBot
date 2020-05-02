@@ -1,6 +1,8 @@
 package com.david.crowbot;
-
 import javax.security.auth.login.LoginException;
+import javax.swing.JFrame;
+
+import com.david.crowbot.helpers.UiPane;
 
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
@@ -15,7 +17,7 @@ public class CrowBot {
 	
 	public static void main(String[] args) {
 		try {
-			jda = new JDABuilder(AccountType.BOT).setToken("NzA1ODk3NTIzMDYzMjkxOTc1.XqyY-Q.uoXZ9-2F0D3AWuqELthDv36ggDo").build();
+			jda = new JDABuilder(AccountType.BOT).setToken("").build();
 		} catch (LoginException e) {
 			e.printStackTrace();
 		}
@@ -24,6 +26,15 @@ public class CrowBot {
 		jda.getPresence().setActivity(Activity.watching("chat"));
 		
 		jda.addEventListener(new CommandHandler());
+		
+		JFrame frame = new JFrame("Crowbot Terminal");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(200, 100);
+		frame.setLayout(null);
+		frame.setResizable(false);
+		frame.setLocationRelativeTo(null);
+		frame.setContentPane(new UiPane(frame.getSize()));
+		frame.setVisible(true);
 	}
 	
 }
